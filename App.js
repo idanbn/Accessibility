@@ -14,9 +14,9 @@ export default function App() {
   React.useEffect(listAllVoiceOptions);
 
   const speakGreeting = () => {
-      const greeting = `Hi ${name}`;
+      const greeting = ` ${name}`;
       const options = {
-        voice: "com.apple.speech.synthesis.voice.Fred",
+        voice: "com.apple.ttsbundle.Carmit-compact",
         pitch: 1.5,
         rate: 0.7
       };
