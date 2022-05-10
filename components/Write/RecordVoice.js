@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import { Audio } from 'expo-av';
-
+import { Entypo } from '@expo/vector-icons';
 
 const RecordVoice = (props) => {
 
@@ -29,22 +29,42 @@ const RecordVoice = (props) => {
 
         setRecording(undefined);
         await recording.stopAndUnloadAsync();
-        
+
         const uri = recording.getURI();
         props.setSoundRecording(recording);
         console.log('Recording stopped and stored at', uri);
     }
 
     return (
-        <View style={styles.container}>
-            <Button
-                title={recording ? 'Stop Recording' : 'Start Recording'}
-                onPress={recording ? stopRecording : startRecording}
-            />
-        </View>
+
+        <TouchableOpacity style={styles.button} activeOpacity={0.2} onPress={recording ? stopRecording : startRecording}>
+            <Entypo name="mic" size={70} color={recording ? 'red' : 'green'}  style={styles.icon}/>
+            <Text style={styles.text}> {recording ? 'Stop Recording' : 'Start Recording'} </Text>
+        </TouchableOpacity>
+
     );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+    button: {
+        backgroundColor: 'lightblue',
+        padding: 12,
+        borderRadius: 10,
+        margin: 16
+    },
+    text: {
+        fontSize: Platform.OS === 'ios' ? 22 : 20,
+        color: 'white',
+        fontWeight: "bold",
+        textTransform: 'uppercase',
+        alignSelf: 'center'
+    },
+    icon: {
+        alignSelf: 'center',
+        marginBottom: 10
+    }
+
+})
 
 export default RecordVoice;
