@@ -7,42 +7,31 @@ import { Audio } from 'expo-av';
 const SoundVoice = (props) => {
 
     const [sound, setSound] = React.useState();
+    const [isLoaded, setIsLoaded] = React.useState('ready');
 
-    async function playSound() {
-        console.log('Loading Sound');
-        console.log(props.soundUri);
 
-        const sound = new Audio.Sound();
-        const URI = props.soundUri;
-        try {
-          await sound.loadAsync(props.soundUri);
-          await sound.playAsync();
-          // Your sound is playing!
-        
-          // Don't forget to unload the sound from memory
-          // when you are done using the Sound object
-          await sound.unloadAsync();
-        } catch (error) {
-          // An error occurred!
-        }
+    async function loadSound() {
+        const { sound, status } = await (props.soundRecording).createNewLoadedSoundAsync();
+
         setSound(sound);
-
-        console.log('Playing Sound');
-        await sound.playAsync();
+        setIsLoaded(status.isLoaded);
     }
 
     React.useEffect(() => {
-        return sound
-            ? () => {
-                console.log('Unloading Sound');
-                sound.unloadAsync();
-            }
-            : undefined;
-    }, [sound]);
+        loadSound();
+    }, []);
+
+    function playSound() {
+        sound.replayAsync();
+    }
 
     return (
         <View style={styles.container}>
-            <Button title="Play Sound" onPress={playSound} />
+            {
+                isLoaded === true?
+                    <Button title="Play Sound" onPress={playSound} />
+                    : null
+            }
         </View>
     );
 }
