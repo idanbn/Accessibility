@@ -1,5 +1,5 @@
 
-import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, Platform, TouchableOpacity, Text } from 'react-native';
 import React from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         margin: 24
     },
     buttonText: {
-        fontSize: 22,
+        fontSize: Platform.OS === 'ios' ? 22 : 20,
         color: 'white',
         fontWeight: "bold",
         textTransform: 'uppercase',
