@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
-import { Audio } from 'expo-av';
+import * as FileSystem from 'expo-file-system';
 
 
 const SoundVoice = (props) => {
@@ -21,8 +21,22 @@ const SoundVoice = (props) => {
         loadSound();
     }, []);
 
+    const deleteRecordingFile = async () => {
+        try {
+            const uri = props.soundRecording.getURI();
+
+            const info = await FileSystem.getInfoAsync(uri);
+            console.log(info.uri);
+            await FileSystem.deleteAsync(info.uri)
+        } catch(error) {
+            console.log("There was an error deleting recording file", error);
+        }
+    }
+
     function playSound() {
         sound.replayAsync();
+        deleteRecordingFile();
+        setIsLoaded('ready');
     }
 
     return (
