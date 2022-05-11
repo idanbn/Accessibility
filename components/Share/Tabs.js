@@ -59,6 +59,52 @@ const Tabs = ({ navigation, ...props }) => {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => {
+            props.setActiveTab("Login");
+            navigation.navigate("Login", { activeTab: "Login" });
+          }}
+          style={[
+            styles.tab,
+            {
+              backgroundColor:
+                props.activeTab === "Login" ? "black" : "lightblue",
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.text,
+              { color: props.activeTab === "Login" ? "white" : "black" },
+            ]}
+          >
+            {" "}
+            Login{" "}
+          </Text>
+        </TouchableOpacity>
+        {/* <TouchableOpacity
+          onPress={() => {
+            props.setActiveTab("Rights");
+            navigation.navigate("Rights", { activeTab: "Rights" });
+          }}
+          style={[
+            styles.tab,
+            {
+              backgroundColor:
+                props.activeTab === "Rights" ? "black" : "lightblue",
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.text,
+              { color: props.activeTab === "Rights" ? "white" : "black" },
+            ]}
+          >
+            {" "}
+            Your Rights{" "}
+          </Text>
+        </TouchableOpacity> */}
+        <TouchableOpacity
           onPress={() => Linking.openURL("mailto:support@example.com")}
           style={[
             styles.tab,
@@ -70,6 +116,20 @@ const Tabs = ({ navigation, ...props }) => {
           ]}
         >
           <Text>FeedBack</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => Linking.openURL('https://www.kolzchut.org.il/he/%D7%90%D7%A0%D7%A9%D7%99%D7%9D_%D7%A2%D7%9D_%D7%9E%D7%95%D7%92%D7%91%D7%9C%D7%95%D7%99%D7%95%D7%AA')}
+          style={[
+            styles.tab,
+            {
+              backgroundColor: "lightblue",
+              position: "absolute",
+              top: 80,
+              left: 200
+            },
+          ]}
+        >
+          <Text>Know your rights</Text>
         </TouchableOpacity>
       </View>
     </View>

@@ -5,8 +5,8 @@ import { React } from 'react';
 
 import SpeechScreen from '../screens/SpeechScreen';
 import WriteScreen from '../screens/WriteScreen';
-
-
+import LoginScreen from '../screens/LoginScreen';
+// import RightsScreen from '../screens/RightsScreen';
 
 export default function AppNavigator() {
     const Stack = createNativeStackNavigator();
@@ -21,7 +21,8 @@ export default function AppNavigator() {
             >
                 <Stack.Screen name="Speech" component={SpeechScreen} />
                 <Stack.Screen name="Write" component={WriteScreen} />
-
+                <Stack.Screen name="Login" component={LoginScreen}/>
+                {/* <Stack.Screen name="Rights" component={RightsScreen}/> */}
 
 
             </Stack.Navigator>
