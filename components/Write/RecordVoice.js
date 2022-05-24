@@ -8,7 +8,7 @@ const RecordVoice = (props) => {
 
   const recordingOptions = {
     android: {
-      extension: '.m4a',
+      extension: ".m4a",
       outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
       audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
       sampleRate: 44100,
@@ -16,7 +16,7 @@ const RecordVoice = (props) => {
       bitRate: 128000,
     },
     ios: {
-      extension: '.wav',
+      extension: ".wav",
       audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_HIGH,
       sampleRate: 44100,
       numberOfChannels: 1,
@@ -29,6 +29,7 @@ const RecordVoice = (props) => {
 
   async function startRecording() {
     try {
+      props.setSoundRecording("");
       await Audio.requestPermissionsAsync();
       await Audio.setAudioModeAsync({
         allowsRecordingIOS: true,
